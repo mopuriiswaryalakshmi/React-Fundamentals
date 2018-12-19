@@ -1,0 +1,49 @@
+02/12/2018
+->https://unpkg.com/#/
+
+For Deployment :-
+->https://unpkg.com/react@16.0.0/umd/react.development.js
+->https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js
+
+For Production:-
+->unpkg.com/react@16.0.0/umd/react.production.min.js)
+->unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js
+
+For Babel convertion of JSX to JS
+->https://unpkg.com/babel-standalone@6.26.0/(->reference)
+->https://unpkg.com/babel-standalone@6.26.0/babel.js
+
+//function Component in React
+//1. function name in capital
+//2. function should get arguments
+//3. function must return jsx
+//components are like your user defined tags
+
+class components for->updating
+Dum functional components for -> static
+extend->inheritence
+
+user behaviour + 
+
+state -> to track
+super -> to invoke component in parent to setup this
+setState ->to update value of state
+
+constuctor
+pre_Save willMount  //before_save
+save  
+post  save didMount   //api calls need to done here//after_save 
+render 
+
+//notification for server -> web sockets
+
+//this is mentinde on constructor then in all methods that varibale is accessed directly without passing as argument
+day 15, 16 asy
+//stack => function call
+//quote -->  first in first out
+//queue --> last in first out
+
+//sudo npm install -g create-react-app
+create-react-app first-app
+
+

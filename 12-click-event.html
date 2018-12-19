@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> </title>
+	</head>
+	<body>
+		<div id="root">
+			<!-- 
+                id name email
+                1 arjun arjun@gmail.com
+             -->
+			
+		</div>
+		<script src="js/react.development.js"></script>
+		<script src="js/react-dom.development.js"></script>
+		<script src="js/babel.js"></script>
+
+		<script type="text/babel">
+			const rootHandle = document.getElementById("root")
+            
+            let count = 0
+            let stepBy2 = 0
+
+            function handleIncrementClick(){
+                count++
+                stepBy2 = count * 2 
+                ele = displayElement()
+                ReactDOM.render(ele, rootHandle)
+            }
+
+            function handleDecrementClick(){
+                count--
+                stepBy2 = count / 2 
+                ele = displayElement()
+                ReactDOM.render(ele, rootHandle)
+            }
+
+            function displayElement(){
+                return (
+                    <div>
+                        <h2> the count is {count} / { stepBy2 } </h2>
+                        <button onClick={handleIncrementClick} > + </button>
+                        <button onClick={handleDecrementClick} > - </button>
+                    </div>
+                )
+            }
+
+            let ele = displayElement()
+
+			ReactDOM.render(ele, rootHandle)
+		</script>
+	</body>
+</html>
+
+//class->updating
+//function -> static

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> </title>
+	</head>
+	<body>
+		<div id="root">
+			<!-- 
+                id name email
+                1 arjun arjun@gmail.com
+             -->
+			
+		</div>
+		<script src="js/react.development.js"></script>
+		<script src="js/react-dom.development.js"></script>
+		<script src="js/babel.js"></script>
+
+		<script type="text/babel">
+            const rootHandle = document.getElementById("root")
+            
+            // props = properties
+            // component -> user defined tags
+
+            function Header(props){
+                return (
+                    <div>
+                        <h2> { props.title } </h2>
+                        <p> { props.body } </p>
+                    </div>
+                )
+            }
+
+            function Services(props) {
+                return (
+                    <div>
+                        <h2> { props.title } </h2>
+                        <ul>
+                            {
+                                props.services.map(function(service,index){
+                                    return <li key={index} > { service } </li>
+                                })
+                            }
+                            
+                        </ul>
+                    </div>
+                )
+            }
+
+            function Portfolio(props){
+                return (
+                    <div>
+                        <h2> Portfolio</h2>
+                        <ul>
+                            <li>Hospitality</li>
+                            <li>Resort</li>
+                        </ul>
+                    </div>
+                )
+            }
+
+            const ele = (
+                <div>
+                   <Header title="Welcome to the site" body="we are an interior design studio" />
+                   { /* Header({ title: "About us", body: "about us section"}) */}
+                   <hr/>
+
+                   <Services title="Services We offer" services={["Design", "Consulting", "Home Doctor"]} />
+                   <hr/>
+
+                   <Portfolio />
+                </div>
+            )
+            ReactDOM.render(ele, rootHandle)
+        </script>
+    </body>
+</html>

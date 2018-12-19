@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> </title>
+	</head>
+	<body>
+		<div id="root">
+			<!-- 
+                id name email
+                1 arjun arjun@gmail.com
+             -->
+			
+		</div>
+		<script src="js/react.development.js"></script>
+		<script src="js/react-dom.development.js"></script>
+		<script src="js/babel.js"></script>
+
+		<script type="text/babel">
+            const rootHandle = document.getElementById("root")
+            
+            // props = properties
+            // component -> user defined tags
+
+            function Welcome(props){
+                return (
+                    <div>
+                        <h2> Welcome to the site </h2>
+                        <p> we are an interior design studio </p>
+                    </div>
+                )
+            }
+
+            function Services(props) {
+                return (
+                    <div>
+                        <h2> Services we offer</h2>
+                        <ul>
+                            <li> Design </li>
+                            <li> Consulting </li>
+                            <li> Home Doctor </li>
+                        </ul>
+                    </div>
+                )
+            }
+
+            function Portfolio(props){
+                return (
+                    <div>
+                        <h2> Portfolio</h2>
+                        <ul>
+                            <li>Hospitality</li>
+                            <li>Resort</li>
+                        </ul>
+                    </div>
+                )
+            }
+
+            const ele = (
+                <div>
+                    <Welcome />
+                    <hr/>
+                    <Services />
+                    <hr/>
+                    <Portfolio />
+                    { Portfolio() }
+                </div>
+            )
+            ReactDOM.render(ele, rootHandle)
+        </script>
+    </body>
+</html>

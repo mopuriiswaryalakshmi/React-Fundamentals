@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> </title>
+	</head>
+	<body>
+		<div id="root">
+			<!-- 
+                id name email
+                1 arjun arjun@gmail.com
+             -->
+			
+		</div>
+		<script src="js/react.development.js"></script>
+		<script src="js/react-dom.development.js"></script>
+		<script src="js/babel.js"></script>
+
+		<script type="text/babel">
+            const rootHandle = document.getElementById("root")
+            
+            // props = properties
+            // component -> user defined tags
+
+            function App(){
+                return(
+                    <div>
+                        <Product name="Kurtis" price="500" description="This is  the description of the product" />
+                     </div>
+                )
+            }
+
+            
+            function Product(props) {
+                // const {name,price,description} = props
+                return (
+                    <div>
+                        <p> <b>Name : </b> {props.name} </p>
+                        <p> <b>Price : </b> {props.price} </p>
+                        <p> <b>Description : </b> {props.description} </p>
+                    </div>
+                )
+            }
+
+            
+            
+            ReactDOM.render(<App />, rootHandle)
+        </script>
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> </title>
+	</head>
+	<body>
+		<div id="root">
+			
+		</div>
+		<script src="js/react.development.js"></script>
+		<script src="js/react-dom.development.js"></script>
+		<script src="js/babel.js"></script>
+
+		<script type="text/babel">
+            const rootHandle = document.getElementById("root")
+
+            
+            
+            function App() {
+                const article =[
+                    {id: 1, title: "harry poter",created_at: "09-12-2018",author: "Rao", tags: ["Nice"], comments: [{id: 1,title: "Good", body: "1st comment"},{id: 2,title: "Amazing", body: "2nd comment"}]}
+                ]       
+                return (
+                    <div>
+                        <Article />
+                        <Comments />
+                        <SingleComment />
+                    </div>
+                )
+            }
+
+            function Article(props) {
+                <div>
+                const { article } = props
+                    return <Article id={article.id} body={article.body} title={article.title} created_at={article.created_at} author={artcle.author} tags={artcle.tags} />
+                </div>
+            }
+
+            function Comments(props) {
+                {  article.comments.map(function(comment, index) {
+                    return <Comments  title={comment.title} body={comment.body} />
+                })
+            }
+
+            function SingleComment(props) {
+
+            }
+
+           
+            ReactDOM.render(<App />, rootHandle)
+        </script>
+    </body>
+</html>

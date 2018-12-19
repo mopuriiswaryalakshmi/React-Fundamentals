@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> </title>
+	</head>
+	<body>
+		<div id="root">
+			<!-- 
+                id name email
+                1 arjun arjun@gmail.com
+             -->
+			
+		</div>
+		<script src="js/react.development.js"></script>
+		<script src="js/react-dom.development.js"></script>
+		<script src="js/babel.js"></script>
+
+		<script type="text/babel">
+			const rootHandle = document.getElementById("root")
+            
+            //function Component in React
+            //1. function name in capital
+            //2. function should get arguments
+            //3. function must return jsx
+            //components are like your user defined tags
+            class Counter extends React.component {
+                constructor() {
+                    super()
+                    this.state = {
+                        value = 0
+                    }
+                    this.countUp = this.countUp.bind(this)
+                    this.countDown = this.countDown.bind(this)
+                }
+
+                countUp() {
+                    this.setState(function(preState){
+                        return {
+                            value: prevState.value + 1
+                        }
+                    })
+                }
+
+                countDown(){
+                    this.setState(function(preState){
+                        return {
+                            value: preState.value - 1
+                        }
+                    })
+                }
+            }
+
+			ReactDOM.render(ele, rootHandle)
+		</script>
+	</body>
+</html>
+
+
+tags articles categories  c

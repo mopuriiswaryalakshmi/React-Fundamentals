@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> </title>
+	</head>
+	<body>
+		<div id="root">
+			
+		</div>
+		<script src="js/react.development.js"></script>
+		<script src="js/react-dom.development.js"></script>
+        <script src="js/babel.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+        <!-- https://www.npmjs.com/package/axios -->
+
+		<script type="text/babel">
+            const rootHandle = document.getElementById("root")
+
+           function Child(props) {
+               return (
+                   <div>
+                        <b> Child Component - {props.name} </b>
+                        <b> { props.greetFunc(props.name)} </b>
+                   </div>
+               )
+           }
+
+            class Parent extends React.Component {  //inherit from react///extending
+                greet(name) {
+                    console.log('hello my name is', name)
+                }
+
+                render() {
+                    return (
+                        <div>
+                            <h2> Parent Component </h2>
+                            { this.greet('sumana') }
+                            <Child name="ishu"  greetFunc={this.greet} />
+                            <Child name="lakshmi" greetFunc={this.greet} />
+                        </div>
+                    )
+                }
+               
+            }
+        
+
+           
+           
+            ReactDOM.render(<Parent />, rootHandle)
+        </script>
+    </body>
+</html>
+
+<!-- constuctor -->
+<!-- pre_Save willMount  //before_save-->
+<!-- save  -->
+<!-- post  save didMount   //api calls need to done here//after_save -->
+<!-- render -->
+
+

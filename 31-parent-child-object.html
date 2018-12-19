@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> </title>
+	</head>
+	<body>
+		<div id="root">
+			
+		</div>
+		<script src="js/react.development.js"></script>
+		<script src="js/react-dom.development.js"></script>
+        <script src="js/babel.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+        <!-- https://www.npmjs.com/package/axios -->
+
+		<script type="text/babel">
+            const rootHandle = document.getElementById("root")
+
+            class Parent extends React.Component {  //inherit from react///extending
+                constructor(props) { 
+                    super(props)
+                    this.state = {
+                        children: [
+                            { id: 1, name: 'ishu' },
+                            { id: 2, name: 'lakshmi' },
+                            { id:3, name: 'viji' },
+                            { id:4, name: 'madhuri' },
+                            { id:5, name: 'rani' }
+                        ]
+                    }
+                    this.handleRemove = this.handleRemove.bind(this) //refering to child now after bind invoke its refering parent
+                }
+
+                handleGreet(name) {
+                    console.log('hello my name is', name)
+                }
+
+                // handleRemove() {
+                //     console.log('removel index', index)
+                // }
+                handleRemove(id) {
+                    this.setState( function(prevState) {
+                        return {
+                            children: prevState.children.filter(child => {
+                                return child.id != id
+                            })
+                        }
+                    })
+                }
+
+                render(){
+                    return (
+                        <div>
+                            <h2> Parent Component </h2>
+                             
+                            { this.state.children.map(child => {
+                                return <Child  name={childName} key={i} id={this.id} handleGreet={this.handleGreet} handleRemove={this.handleRemove} />
+                            })
+                            }
+                        </div>
+                    )
+                }
+
+                function Child(props){
+                    return (
+                        <div>
+                            <b> Child Component - { props.name } </b>
+                            { props.handleGreet(props.name)}
+                            <button onClick={() => {
+                                // props.handleRemove(props.index)
+                                props.handleRemove(props.id)
+                            }}> remove </button>
+                        </div>
+                    )
+                }
+            }
+               
+            ReactDOM.render(<Parent />, rootHandle)
+        </script>
+    </body>
+</html>
+
+<!-- constuctor -->
+<!-- pre_Save willMount  //before_save-->
+<!-- save  -->
+<!-- post  save didMount   //api calls need to done here//after_save -->
+<!-- render -->
+
+

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+    <head>
+
+    </head>
+<body>
+    <div id=root>
+
+    </div>
+    
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.js"></script>
+
+    <script type="text/babel" >
+    const rootHandle = document.getElementById("root");
+
+    // forms are controlled  components //maining state of input fileds ,so  this is called controlled components
+    // component are user defined functions
+    //class is user defined data types which has properties and methods
+
+    class Registration extends React.Component{
+        constructor(props){
+            super(props)
+            this.state={
+                username: '',
+                email: '',
+                password: '',
+
+                // errors states
+                usernameErrorMsg: '',
+                emailErrorMsg: '',
+                passwordErrorMsg: '',
+
+                isUsernameValid: false,
+                isEmailValid: false,
+                isPasswordValid: false 
+
+                // fieldError{
+                //     username: false 
+                //     email: false 
+                //     password: false
+                // }
+
+                
+            }
+            this.handleUsername = this.handleUsername.bind(this);
+            this.handleEmail = this.handleEmail.bind(this);
+            this.handlePassword = this.handlePassword.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this);
+        }
+        
+        handleUsername(event) {
+            this.setState({
+                username: event.target.value  //event is an object,target is for where event got trigge,and set valuee
+            })
+        }
+
+        handleEmail(event) {
+            this.setState({
+                email: event.target.value
+            })
+        }
+
+        handlePassword(event) {
+            this.setState({
+                password: event.target.value
+            })
+        }
+
+        validateUsername(value) {
+            if(value.length == 0) {
+                this.setState({
+                    usernameErrorMsg: 'should not be blank',
+                    isUsernameValid: false 
+                    // 'fieldError.username': false
+                })
+            }else{
+                this.setState({
+                    usernameErrorMsg: '',
+                    isUsernameValid: true
+                    // 'fieldError.username': true
+                })
+            }
+        }
+
+        validateEmail(value) {
+            if(value.length == 0){
+                this.setState({
+                    emailErrorMsg: 'should not be blank',
+                    isEmailValid: false 
+                })
+            } else {
+                this.setState({
+                    emailErrorMsg: '',
+                    isEmailValid: true 
+                })
+            }
+        }
+
+        validatePassword(value){
+            if(value.length == 0) {
+                this.setState({
+                    passwordErrorMsg: "should not be blank",
+                    isPasswordValid: false
+                })
+            }else if(value.length < 8 && value.length > 36) {
+                this.setState({
+                    passwordErrorMsg: "password should be between 8 to 36 charecters",
+                    isPasswordValid: false
+                })
+            }else {
+                this.setState({
+                    passwordErrorMsg: '',
+                    isPasswordValid: true
+                })
+            }
+        }
+
+        handleSubmit(event) {
+            event.preventDefault()
+            console.log(this.state)
+            console.log(this.state.username.length);
+            console.log('run client side validations')
+            console.log('if validation pass, make api post')
+            console.log('once success response, reset your state')
+            this.validateUsername(this.state.username);
+            this.validateEmail(this.state.email);
+            this.validatePassword(this.state.password);
+
+            // if(this.state.isUsernameValid && this.state.isEmailValid && this.state.isPasswordValid){
+            //     this.setState({
+            //         username: '',
+            //         email: '',
+            //         password: ''
+            //     })
+            // }
+
+                setTimeout(() => {
+                    if(this.state.isUsernameValid && this.state.isEmailValid && this.state.isPasswordValid){
+                        console.log('make api call')
+                        console.log('reset the form')
+                    }
+                }, 0)
+        }
+
+        render() {
+            return (
+                <div>
+                    <h2> Register With Us</h2>
+
+                    <form onSubmit={this.handleSubmit}>
+                        <label> Username
+                            <input type="text"  name="username" value={this.state.username} onChange={this.handleUsername} />
+                            <span> { this.state.usernameErrorMsg } </span>
+                        </label> <br/>
+
+                        <label> Email
+                            <input type="text" name="email" value={this.state.email} onChange={this.handleEmail} />
+                            <span>{this.state.emailErrorMsg} </span>
+                        </label> <br/>
+
+                        <label> Password
+                            <input type="password" name="password" value={this.state.password}  onChange={this.handlePassword} />
+                            <span>{this.state.passwordErrorMsg}</span>
+                        </label> <br/>
+
+                        <input type="submit" value="Register" />
+                    </form>
+                </div>
+            )
+        }
+    }
+    
+    ReactDOM.render(<Registration/>,rootHandle);
+    </script>
+</body>
+</html>
+

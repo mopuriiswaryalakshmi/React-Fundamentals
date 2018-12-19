@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> </title>
+	</head>
+	<body>
+		<div id="root">
+			
+		</div>
+		<script src="js/react.development.js"></script>
+		<script src="js/react-dom.development.js"></script>
+        <script src="js/babel.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+        <!-- https://www.npmjs.com/package/axios -->
+
+		<script type="text/babel">
+            const rootHandle = document.getElementById("root");
+            var checkboxStatus;
+            function Child(props) {
+                return (
+                    <div>
+                        <b> {props.title} </b>
+                        <input id={props.id} type="checkbox"  onChange= {() => {
+                            {props.handleStateChange(props)}
+                        }} />
+                        <button onClick= {() => {
+                            {props.handleRemove(props.id)}
+                        }}> Remove </button>
+                    </div>
+                )
+            }
+
+            class Task extends React.Component {  //inherit from react///extending
+                constructor(props) { 
+                    super(props)
+                    this.state = {
+                        children: [
+                            { id: 1, title: "AmericanSteel", is_completed: false},
+                            { id: 2, title: "AmericanCarport",is_completed: false },
+                            { id: 3, title: 'CarportKingdom',is_completed: false }
+                        ]
+                    }
+                     this.handleStateChange = this.handleStateChange.bind(this);
+                     this.handleRemove = this.handleRemove.bind(this);
+                }
+                
+                
+                handleRemove (id){
+                    this.setState(function(prevState){
+                        return {
+                            children: prevState.children.filter(child => {
+                                return child.id != id
+                            })
+                        }
+                    })
+                } 
+
+                handleStateChange(props) {
+                    console.log(props.id);
+                    let id_handle = props.id;
+                    console.log(props);
+                    checkboxStatus = document.getElementById(props.id).checked;
+                    console.log(checkboxStatus);
+                    this.setState(function(prevState){
+                        return {
+                            // children: prevState.children.find(child => {
+                            // return child.is_completed = true
+                            // })
+                        }
+                    })
+                }
+
+                
+                render(){
+                    return(
+                        <div>
+                            <h2> Testing Tasks - {this.state.children.length} </h2> 
+                            <h2> Completed - {this.state.children.filter(child =>{child.is_completed == true} ).length}   Incomplete - {this.state.children.filter(child =>{child.is_completed == false} ).length} </h2>
+                            {this.state.children.map((child, i) => {
+                                return <Child title={child.title} key={i} id={child.id} index={i} handleRemove={this.handleRemove} handleStateChange={this.handleStateChange} />
+                            })}
+                        </div>
+                    ) 
+                }          
+            }
+               
+            ReactDOM.render(<Task />, rootHandle)
+        </script>
+    </body>
+</html>
+
+
+<!-- constuctor -->
+<!-- {this.state.children.map((child, i) => {child.is_completed == true}) -->
+<!-- pre_Save willMount  //before_save-->
+<!-- save  -->
+<!-- post  save didMount   //api calls need to done here//after_save -->
+<!-- render -->
+<!-- // incompleteTasks(){
+    //     this.setState(function(prevState){
+
+    //     }
+    // }
+
+    // completedTasks(){
+
+    // }
+
+ -->
